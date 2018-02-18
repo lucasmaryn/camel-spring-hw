@@ -2,6 +2,7 @@ package com.javainuse.route;
 
 import com.javainuse.exception.CamelCustomException;
 import com.javainuse.processor.MyProcessor;
+import com.javainuse.processor.RedeliveryProcessor;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
@@ -14,7 +15,8 @@ public class SimpleRouteBuilder extends RouteBuilder{
             public void process(Exchange exchange) throws Exception {
                 System.out.println("Handling exception");
             }
-        }).log("Received body ${body}").handled(true);
+        }).onRedelivery(new RedeliveryProcessor()).redeliveryPolicyRef("testRedeliveryPolicyProfile")
+                .log("Received body ${body}").handled(true);
 
         from("file:C:/camel-InputFolder?noop=true").process(new MyProcessor()).to("file:C:/camel-OutputFolder");
     }
