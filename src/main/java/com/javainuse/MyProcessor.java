@@ -1,4 +1,4 @@
-package com.javainuse.processor;
+package com.javainuse;
 
 import com.javainuse.exception.CamelCustomException;
 import org.apache.camel.Exchange;
