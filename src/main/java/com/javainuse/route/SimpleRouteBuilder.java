@@ -18,5 +18,7 @@ public class SimpleRouteBuilder extends RouteBuilder{
                         System.out.println("handling exception");
                     }
                 }).log("Recived body ${body}");
+
+        from("file:C:/camel-InputFolder?noop=true").process(new MyProcessor()).to("file:C:/camel-OutputFolder");
     }
 }
