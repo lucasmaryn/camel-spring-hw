@@ -19,6 +19,6 @@ public class SimpleRouteBuilder extends RouteBuilder{
                     }
                 }).log("Recived body ${body}");
 
-        from("file:C:/camel-InputFolder?noop=true").process(new MyProcessor()).to("file:C:/camel-OutputFolder");
+        from("file:C:/camel-InputFolder0?noop=true").process(new MyProcessor()).to("file:C:/camel-OutputFolder0");
     }
 }
