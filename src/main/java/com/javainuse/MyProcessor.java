@@ -7,7 +7,11 @@ import org.apache.camel.Processor;
 public class MyProcessor implements Processor {
 
     public void process(Exchange exchange) throws Exception {
-        System.out.println("Exception thrown");
-        throw new CamelCustomException();
+        exchange.getIn().setBody("test");
+        String a = exchange.getIn().getBody(String.class);
+        System.out.println("Hello " + a);
+        if (a.equalsIgnoreCase("test") ) {
+            throw new CamelCustomException();
+        }
     }
 }
